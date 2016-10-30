@@ -24,23 +24,7 @@ function drawBall() {
   ctx.closePath();
 }
 
-function drawPaddle() {
-  ctx.beginPath();
-  ctx.rect(paddleX, canvas.height-paddleHeight, paddleWidth, paddleHeight);
-  ctx.fillStlye = "#0095DD";
-  ctx.fill();
-  ctx.closePath();
-}
-
-function updateColor() {
-  color = colors[Math.floor(Math.random()*colors.length)]
-  return color;
-}
-
-function draw() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  drawPaddle();
-  drawBall();
+function moveBall() {
   // reverse ball direction if hit it hits the side edges
   if (x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
     dx = -dx;
@@ -54,14 +38,36 @@ function draw() {
 
   x += dx;
   y += dy;
+}
 
+function drawPaddle() {
+  ctx.beginPath();
+  ctx.rect(paddleX, canvas.height-paddleHeight, paddleWidth, paddleHeight);
+  ctx.fillStlye = "#0095DD";
+  ctx.fill();
+  ctx.closePath();
+}
+
+function updateColor() {
+  color = colors[Math.floor(Math.random()*colors.length)]
+  return color;
+}
+
+function movePaddle() {
   if (rightPressed && paddleX < canvas.width-paddleWidth) {
     paddleX += 7;
   }
   else if (leftPressed && paddleX > 0) {
     paddleX -= 7;
   }
+}
 
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  drawBall();
+  drawPaddle();
+  moveBall();
+  movePaddle();
 }
 
 
