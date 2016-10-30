@@ -9,10 +9,22 @@ var dy = -2;
 var ballRadius = 10;
 var color = updateColor()
 
+var paddleHeight = 10;
+var paddleWidth = 75;
+var paddleX = (canvas.width-paddleWidth)/2;
+
 function drawBall() {
   ctx.beginPath();
   ctx.arc(x, y, ballRadius, 0, Math.PI*2);
   ctx.fillStyle = color;
+  ctx.fill();
+  ctx.closePath();
+}
+
+function drawPaddle() {
+  ctx.beginPath();
+  ctx.rect(paddleX, canvas.height-paddleHeight, paddleWidth, paddleHeight);
+  ctx.fillStlye = "#0095DD";
   ctx.fill();
   ctx.closePath();
 }
@@ -24,6 +36,7 @@ function updateColor() {
 
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
+  drawPaddle();
   drawBall();
   // reverse ball direction if hit it hits the side edges
   if (x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
