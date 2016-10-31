@@ -194,10 +194,3 @@ function mouseMoveHandler(e) {
 
 setInterval(draw, 10);
 // draw();
-
-
-
-
-
-
-
