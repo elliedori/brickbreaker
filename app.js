@@ -16,6 +16,7 @@ var paddleX = (canvas.width-paddleWidth)/2;
 var rightPressed = false;
 var leftPressed = false;
 var score = 0;
+var lives = 3;
 
 var brickRowCount = 3;
 var brickColumnCount = 5;
@@ -47,18 +48,30 @@ function moveBall() {
     dx = -dx;
     // color = updateColor();
   }
-  // reverse ball direction if hit it hits the top/bottom edges
+  // reverse ball direction if hit it hits the top edge
   if (y + dy < ballRadius) {
     dy = -dy;
   } 
+  // when the ball hits the bottom of the screen
   else if (y + dy > canvas.height-ballRadius) {
+    // if it hits the paddle, reverse direction
     if (x > paddleX && x < paddleX + paddleWidth) {
       dy = -dy;
     }
     else {
-      alert("GAME OVER");
-      document.location.reload();
-    }
+      lives--;
+      if(!lives) {
+        alert("GAME OVER")
+        document.location.reload();
+      }
+      else {
+        x = canvas.width/2;
+        y = canvas.height-30
+        dx = 2;
+        dy = -2;
+        paddleX = (canvas.width-paddleWidth)/2
+      }
+    }   
   }
 
   x += dx;
@@ -130,6 +143,12 @@ function drawScore() {
   ctx.fillText("Score: " + score, 8, 20);
 }
 
+function drawLives() {
+  ctx.font = "16px Arial";
+  ctx.fillStyle = "#0095DD"
+  ctx.fillText("Lives: " + lives, canvas.width-65, 20);
+}
+
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   drawBricks();
@@ -139,6 +158,7 @@ function draw() {
   movePaddle();
   collisionDetection();
   drawScore();
+  drawLives();
 }
 
 document.addEventListener("keydown", keyDownHandler, false);
