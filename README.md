@@ -11,9 +11,10 @@ Re-creating the beloved Blackberry game in pure JS.
   * All bricks break on first contact
   * Paddle is responsive to arrow keys as well as mouse movement
 
-## Future features
- 
+## Future changes
+  * Add tests
   * Add higher levels
+  * Refactor into MVC pattern
   * Add secret keyboard shortcuts
   * Implement variable bricks, some that break only after being hit twice
   * Update collision algorithm to change ball speed when it hits the paddle
