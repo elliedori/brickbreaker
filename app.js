@@ -159,6 +159,7 @@ function draw() {
   collisionDetection();
   drawScore();
   drawLives();
+  // requestAnimationFrame(draw);
 }
 
 document.addEventListener("keydown", keyDownHandler, false);
@@ -192,6 +193,7 @@ function mouseMoveHandler(e) {
 }
 
 setInterval(draw, 10);
+// draw();
 
 
 
