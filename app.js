@@ -28,12 +28,20 @@ function moveBall() {
   // reverse ball direction if hit it hits the side edges
   if (x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
     dx = -dx;
-    color = updateColor();
+    // color = updateColor();
   }
   // reverse ball direction if hit it hits the top/bottom edges
-  if (y + dy > canvas.height-ballRadius || y + dy < ballRadius) {
+  if (y + dy < ballRadius) {
     dy = -dy;
-    color = updateColor();
+  } 
+  else if (y + dy > canvas.height-ballRadius) {
+    if (x > paddleX && x < paddleX + paddleWidth) {
+      dy = -dy;
+    }
+    else {
+      alert("GAME OVER");
+      document.location.reload();
+    }
   }
 
   x += dx;
@@ -70,7 +78,6 @@ function draw() {
   movePaddle();
 }
 
-
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
 
@@ -91,7 +98,6 @@ function keyUpHandler(e) {
     leftPressed = false;
   }
 }
-
 
 setInterval(draw, 10);
 
