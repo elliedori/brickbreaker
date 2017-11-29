@@ -1,6 +1,6 @@
 # Brickbreaker
 
-Re-creating the beloved Blackberry game in pure JS following [this tutoria](https://developer.mozilla.org/en-US/docs/Games/Tutorials/2D_Breakout_game_pure_JavaScript).
+Re-creating the beloved Blackberry game in pure JS following [this tutorial](https://developer.mozilla.org/en-US/docs/Games/Tutorials/2D_Breakout_game_pure_JavaScript).
 
 ## Current implementation
 
